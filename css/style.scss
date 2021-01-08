@@ -788,6 +788,7 @@ nav {
 @media (max-width:992px) {
     .gellery .images-box img {
         width: 21% !important;
+        max-height: 80px !important;
         margin: 2% !important;
     }
 }
