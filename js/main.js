@@ -30,7 +30,6 @@ document.addEventListener("click", function(e) {
     }
 
     if (e.target !== settinbox) {
-
         if (settinbox.classList.contains("show")) {
             settinggear.classList.toggle("click")
             settinbox.classList.toggle("show");
@@ -111,56 +110,50 @@ let navigatinoptiont = document.querySelectorAll(".bults-box span");
 
 navigatinoptiont.forEach(bullet => {
 
-    bullet.addEventListener("click", function(e) {
-        handdleactive(e)
+        bullet.addEventListener("click", function(e) {
+            handdleactive(e)
 
-        if (e.target.dataset.nav === "yes") {
-            navigation.style.display = "block";
-            localStorage.setItem("navigationopt", "true");
-        } else {
+            if (e.target.dataset.nav === "yes") {
+                navigation.style.display = "block";
+                localStorage.setItem("navigationopt", "true");
+            } else {
 
-            navigation.style.display = "none";
-            localStorage.setItem("navigationopt", "false");
-        }
+                navigation.style.display = "none";
+                localStorage.setItem("navigationopt", "false");
+            }
 
-
+        })
 
     })
+    //nav background//
+function navbackground() {
 
-})
+    if (window.pageYOffset > 10) {
+
+        nav.style.background = "rgba(11,11,11,.9)";
+
+    } else {
+        nav.style.background = "none";
+    }
+
+};
+window.addEventListener("scroll", navbackground)
+    //nav background//
 
 //navigation bullets options//
 
 
-
-/*
-//show and hide the sidebar//
-parsbutt.onclick = function() {
-    sidebar.classList.remove("hide")
-    sidebar.classList.add("show")
-}
-sidepars.onclick = function() {
-        this.parentNode.classList.remove("show")
-        this.parentNode.classList.add("hide")
-    }
-    //show and hide the sidebar//
-
 //random background for landingsection//
-*/
+
 function randomebackground() {
 
     if (backgroundrandom === true) {
         let thebackgroudsrc = ["url(../pic/landing-background-1.jpg)", "url(../pic/landing-background-2.jpg)", "url(../pic/landing-background-3.png)", "url(../pic/landing-page-background-4.jpg)", "url(../pic/landing-page-background-5.jpg)"];
-
         backgroundinterval = setInterval(function() {
-
             let randomnum = Math.floor(Math.random() * thebackgroudsrc.length);
-
             landing.style.backgroundImage = thebackgroudsrc[randomnum]
-
         }, 4000);
     }
-
 }
 
 
@@ -236,43 +229,29 @@ if (navigationopt !== null) {
 //localstorege//
 //reset all options//
 let theresetbutt = document.querySelector(".setting-box .reset");
-
-
 theresetbutt.onclick = function() {
-
     localStorage.removeItem("coloroption");
     localStorage.removeItem("backgroundopt");
     localStorage.removeItem("navigationopt");
     window.location.reload()
 }
 
-
 //reset all options//
 // skill progres//
 let theskillssec = document.querySelector(".our-skills");
 let progres = document.querySelectorAll(".skill-proggres span");
-window.onscroll = function() {
-        if (this.pageYOffset + 250 > theskillssec.offsetTop) {
 
-            progres.forEach(span => {
+function progresfunction() {
+    if (this.pageYOffset > theskillssec.offsetTop - 400) {
 
-
-                span.style.width = `${span.dataset.proggrs}%`;
-
-                span.textContent = `${span.dataset.proggrs}%`
-
-            })
-        }
-
-        if (this.pageYOffset > 10) {
-
-            nav.style.background = "rgba(11,11,11,.9)";
-
-        } else {
-            nav.style.background = "none";
-        }
+        progres.forEach(span => {
+            span.style.width = `${span.dataset.proggrs}%`;
+            span.textContent = `${span.dataset.proggrs}%`
+        })
     }
-    // skill progres//
+}
+window.addEventListener("scroll", progresfunction);
+// skill progres//
 
 
 
@@ -288,75 +267,59 @@ gelleryimges.forEach(img => {
             popbox = document.createElement("div"),
             popimg = document.createElement("img"),
             popspan = document.createElement("span");
-
-
         if (img.alt !== null) {
             let pophead = document.createElement("h4");
-
             pophead.textContent = img.alt;
             popbox.appendChild(pophead)
         }
-
         theoverlay.classList.add("overlay-imge");
         popbox.classList.add("box");
-
         popimg.src = img.getAttribute("src")
         popspan.innerHTML = `x`;
         popspan.classList.add("close-butt");
         popbox.appendChild(popimg);
         popbox.appendChild(popspan);
-        theoverlay.appendChild(popbox)
-
-
+        theoverlay.appendChild(popbox);
         document.body.appendChild(theoverlay)
-
-
-
     })
 
 });
 
 document.addEventListener("click", function(e) {
-
-
     if (e.target.className == "close-butt") {
         e.target.parentElement.parentNode.remove()
     }
-
-
 })
 
 //imges popup//
 
 //testimolins//
+let testmolinsitems = document.querySelectorAll(".testi-content-box .person"),
+    start = 0;
 
 function testifun() {
-    let testmolinsitems = document.querySelectorAll(".testi-content-box .person"),
-        start = 0;
-
-
     let testiinter = setInterval(function() {
-
         if (testmolinsitems.length !== start) {
-
-            testmolinsitems.forEach(te => {
-
-                te.style.display = "none";
-            })
-
+            removealltestmolins()
             start++;
         }
         if (testmolinsitems.length === start) {
-
+            removealltestmolins()
             start = 0;
         }
-
         testmolinsitems[start].style.display = "block";
-    }, 4000)
+    }, 4000);
 
     testmolinsitems[start].style.display = "block";
 }
 testifun()
+
+function removealltestmolins() {
+    testmolinsitems.forEach(te => {
+
+        te.style.display = "none";
+    })
+}
 
 
 
@@ -366,8 +329,6 @@ testifun()
 
 function scrolltosection(element) {
     element.forEach(bullet => {
-
-
         bullet.addEventListener("click", function(e) {
             e.preventDefault()
             let target = document.querySelector(`.${this.dataset.scroll}`);
@@ -393,3 +354,26 @@ function handdleactive(event) {
     event.target.classList.add("active")
 };
 //handdle active class//
+
+
+// Scroll Reveal Animation
+
+let SR = ScrollReveal({
+    distance: '30px',
+    duration: 1800,
+    reset: true
+});
+SR.reveal('.gellery img  ', {
+    origin: 'top',
+    interval: 200
+})
+SR.reveal(' .feat , .social', {
+    origin: 'bottom'
+})
+
+SR.reveal('.abut-us .content ,.time-line .left , .contact-us .left ,.our-skills .left , .landing p', {
+    origin: 'left'
+})
+SR.reveal('.abut-us .imag , .time-line .right ,.contact-us .right ,footer , .our-skills .right , .landing h1', {
+    origin: 'right'
+})
