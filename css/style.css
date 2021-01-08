@@ -380,7 +380,7 @@ nav .pars, .landing .content a {
 }
 
 .setting-box > span {
-  color: #fff;
+  color: #111 !important;
   display: block;
   position: absolute;
   width: 30px;
@@ -477,6 +477,7 @@ nav .pars {
   border: 1px solid var(--main-color);
   text-align: center;
   font-size: 30px;
+  color: #fff !important;
   cursor: pointer;
 }
 

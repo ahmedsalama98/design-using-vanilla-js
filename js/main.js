@@ -357,6 +357,7 @@ function handdleactive(event) {
 
 
 // Scroll Reveal Animation
+/*
 
 let SR = ScrollReveal({
     distance: '30px',
@@ -376,4 +377,6 @@ SR.reveal('.abut-us .content ,.time-line .left , .contact-us .left ,.our-skills 
 })
 SR.reveal('.abut-us .imag , .time-line .right ,.contact-us .right ,footer , .our-skills .right , .landing h1', {
     origin: 'right'
-})
+})*/
+
+new WOW().init();

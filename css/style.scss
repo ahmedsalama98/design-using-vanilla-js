@@ -368,7 +368,7 @@ $maincolor:#f39c12;
 }
 
 .setting-box>span {
-    color: #fff;
+    color: #111 !important;
     display: block;
     position: absolute;
     width: 30px;
@@ -454,6 +454,7 @@ nav {
         border: 1px solid var(--main-color);
         text-align: center;
         font-size: 30px;
+        color: #fff !important;
         cursor: pointer;
         @extend %transition;
         &:hover,
